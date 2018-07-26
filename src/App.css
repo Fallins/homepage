@@ -1,0 +1,23 @@
+.App {
+  height: 100vh;
+  background-image: url('/images/bg.jpg');
+  background-size: cover;  
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;  
+  width: 100%;
+}
+
+.mycard {
+  background: transparent;
+  border: 1px solid #fff;
+  margin: 0 auto;
+  max-width: 640px;  
+  padding: 10px 20px;
+  color: #fff;
+  font-family: 'Raleway';
+}
