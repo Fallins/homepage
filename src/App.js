@@ -1,52 +1,26 @@
 import React, { Component } from 'react';
-import { Button, Icon, Card, Image } from 'semantic-ui-react'
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import style from './App.css';
+import Home from './Home/components'
+import About from './About/components'
+import Portfolio from './Portfolio/components'
+import Nav from './components/Nav'
 
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<main className="center">
-					<div className="mycard">
-						<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-						<h4>Lorem ipsum dolor sit amet consectetur.</h4>
-						<Button animated>
-							<Button.Content visible>Next</Button.Content>
-							<Button.Content hidden>
-								<Icon name='arrow right' />
-							</Button.Content>
-						</Button>
-						<Button animated>
-							<Button.Content visible>Next</Button.Content>
-							<Button.Content hidden>
-								<Icon name='arrow right' />
-							</Button.Content>
-						</Button>
-					</div>
-				</main>
-			</div>
+			<Router>
+				<div className={style.App}>					
+					<Nav />
+					<Switch>
+						<Route exact path="/" component={Home}/>
+						<Route path="/about" component={About}/>
+						<Route path="/portfolio" component={Portfolio}/>
+					</Switch>
+				</div>
+			</Router>
 		)
 	}
 }
 
-export default App;
-{/* <Card centered className="mycard">
-						<Card.Content>
-							<Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' />
-							<Card.Header>Steve Sanders</Card.Header>
-							<Card.Meta>Friends of Elliot</Card.Meta>
-							<Card.Description>
-								Steve wants to add you to the group <strong>best friends</strong>
-							</Card.Description>
-						</Card.Content>
-						<Card.Content extra>
-							<div className='ui two buttons'>
-								<Button animated>
-									<Button.Content visible>Next</Button.Content>
-									<Button.Content hidden>
-										<Icon name='arrow right' />
-									</Button.Content>
-								</Button>							
-							</div>
-						</Card.Content>
-					</Card> */}
+export default App

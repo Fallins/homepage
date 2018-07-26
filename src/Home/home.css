@@ -1,0 +1,24 @@
+.center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;  
+    width: 100%;
+  }
+  
+  .mycard {
+    background: transparent;
+    margin: 0 auto;
+    max-width: 640px;  
+    padding: 10px 20px;
+    color: #fff;
+    font-family: 'Raleway';
+  }
+  
+  .Btn_Group {
+    margin-top: 30px;
+  }
+  
+  .mr_15{
+    margin-right: 15px !important;
+  }
