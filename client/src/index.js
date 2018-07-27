@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { createEpicMiddleware } from 'redux-observable'
 import {createLogger} from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import './index.css';
 import App from './App';
 import {rootReducer, rootEpic} from './root'
@@ -13,7 +14,9 @@ const loggerMiddleware = createLogger({collapsed: true})
 const epicMiddleware = createEpicMiddleware()
 const store = createStore(
     rootReducer,
-    applyMiddleware(epicMiddleware, loggerMiddleware)
+    composeWithDevTools(
+        applyMiddleware(epicMiddleware, loggerMiddleware)
+    )
 )
 
 epicMiddleware.run(rootEpic)

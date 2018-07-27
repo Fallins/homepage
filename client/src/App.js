@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import style from './App.css';
 import Home from './Home/components'
 import About from './About/components'
-import Portfolio from './Portfolio/components'
+import Portfolio from './Portfolio/containers'
 import Nav from './components/Nav'
 
 class App extends Component {
