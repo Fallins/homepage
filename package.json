@@ -1,0 +1,33 @@
+{
+  "name": "crae-app",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel server -d build",
+    "copyfile": "babel public --out-dir build/public --copy-files",
+    "start:dev": "nodemon --watch server --exec \"npm run build && node build/index.js\"",
+    "start": "npm run build && node build/index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fallins/homepage.git"
+  },
+  "author": "Ben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fallins/homepage/issues"
+  },
+  "homepage": "https://github.com/Fallins/homepage#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0"
+  }
+}
