@@ -17,9 +17,9 @@ export const getHotboardsEpic = action$ => action$.pipe(
 export const getPostsListEpic = action$ => action$.pipe(
     ofType(types.FETCH_POSTSLIST),
     mergeMap(({data}) => {
-        console.log("======================")
-        console.log(data)
-        console.log("======================")
+        // console.log("======================")
+        // console.log(data)
+        // console.log("======================")
         return ajax.get(`/api/posts/${data.count}?url=${data.url}`).pipe(
             map(res => fetchPostsListDone(res.response)),
             
@@ -30,9 +30,9 @@ export const getPostsListEpic = action$ => action$.pipe(
 export const getPostEpic = action$ => action$.pipe(
     ofType(types.FETCH_POST),
     mergeMap(({data}) => {
-        console.log("======================")
-        console.log(data)
-        console.log("======================")
+        // console.log("======================")
+        // console.log(data)
+        // console.log("======================")
         return ajax.get(`/api/post?url=${data.url}`).pipe(
             map(res => fetchPostDone(res.response)),
             

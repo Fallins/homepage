@@ -1,4 +1,3 @@
-import axios from 'axios'
 import * as types from '../actions/actionTypes'
 
 export const fetchHotboards = () => ({type: types.FETCH_HOTBOARDS})

@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Container, Grid, Segment, Dropdown, Loader, } from 'semantic-ui-react'
+import { Container, Menu} from 'semantic-ui-react'
 import style from './index.css'
+import Ptt from './ptt'
 
 class Portfolio extends Component {
     state = {
         options: [],
-        value: ""
+        value: "",
+        textOnly: true ,
+        activeItem: 'PTT',
+        menuItems: ['PTT', 'TEST1', 'TEST2']
     }
 
     handleChange = (e, { value }) => {
@@ -21,76 +24,48 @@ class Portfolio extends Component {
         getPost(url)
     }
 
+    textOnlyHandler = (textOnly) => {
+        this.setState({textOnly})
+    }
+
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+    showContent = () => {
+        const { value, textOnly, activeItem, menuItems } = this.state
+        const { options, postsList, loadingList, post, loadingPost } = this.props
+
+        const pttParams = {
+            value, textOnly, options, postsList, loadingList, post, loadingPost, 
+            textOnlyHandler: this.textOnlyHandler, handleChange: this.handleChange,
+            getPost: this.getPost
+        }
+
+        switch(activeItem) {
+            case 'PTT':
+                return <Ptt {...pttParams} />
+            default: 
+                return <p>empty....</p>
+        }
+    }
+
     componentDidMount() {
         const { getHotBoards } = this.props
         getHotBoards()
     }
 
-    componentDidUpdate() {
-        console.log(this.state.value)
-    }
-
-    render() {    
-        // const { value, options } = this.state
-        const { value } = this.state
-        const { options, postsList, loadingList, post } = this.props
+    render() {   
+        const { value, textOnly, activeItem, menuItems } = this.state
+        const { options, postsList, loadingList, post, loadingPost } = this.props
+        
         return (
             <Container>
-                <Grid columns='equal'>
-                    <Grid.Row>
-                        <Grid.Column width={8}>
-                            <Dropdown
-                                onChange={this.handleChange}
-                                options={options}
-                                placeholder='Choose an option'
-                                selection
-                                value={value}
-                            />
-                        </Grid.Column>               
-                    </Grid.Row>
+                <Menu pointing secondary>
                     {
-                        value ? (
-                            <Grid.Row centered>
-                                <Grid.Column computer={6} mobile={16}>
-                                    <div className={style.sideListContainer}>
-                                        <div className={style.sideList}>                                            
-                                            {
-                                                !loadingList ? (
-                                                    postsList.posts.map(item => (
-                                                        <div className={style.sideList__item} key={item.title} onClick={() => this.getPost(item.href)}>{item.title}</div>
-                                                    ))
-                                                ) : (
-                                                    <div className={style.sideList__loader}>
-                                                        <Loader active/>                                                        
-                                                    </div>
-                                                )
-                                            }
-                                        </div>
-                                    </div>
-                                </Grid.Column>
-                                <Grid.Column computer={10} mobile={16}>
-                                    <div className={style.postContentContainer}>
-                                        <div className={style.postContent}>                                            
-                                            {
-                                                // !loadingList ? (
-                                                //     postsList.posts.map(item => (
-                                                //         <div className={style.sideList__item} key={item.title} onClick={() => this.getPost(item.href)}>{item.title}</div>
-                                                //     ))
-                                                // ) : (
-                                                //     <div className={style.sideList__loader}>
-                                                //         <Loader active/>                                                        
-                                                //     </div>
-                                                // )
-                                            }
-                                            <div className={style.postContent__content} dangerouslySetInnerHTML={{__html: post.content}}>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Grid.Column>               
-                            </Grid.Row>    
-                        ) : null
-                    }                          
-                </Grid>
+                        menuItems.map(item => <Menu.Item key={item} name={item} active={activeItem === item} onClick={this.handleItemClick} />)
+                    }
+                </Menu>   
+
+                {this.showContent()}
             </Container>
         )
     }

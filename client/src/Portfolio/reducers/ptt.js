@@ -41,6 +41,17 @@ const loadingList = (state = false, action) => {
   }
 }
 
+const loadingPost = (state = false, action) => {
+  switch(action.type) {  
+    case types.FETCH_POST: 
+      return true
+    case types.FETCH_POST_DONE: 
+      return false
+    default: 
+      return state
+  }
+}
+
 export const ptt = combineReducers({
-  hotBoards, postsList, loadingList, post
+  hotBoards, postsList, loadingList, post, loadingPost
 })
