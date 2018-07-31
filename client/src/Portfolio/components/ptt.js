@@ -1,11 +1,22 @@
 import React from 'react'
-import { Grid, Button, Dropdown, Loader, } from 'semantic-ui-react'
+import { Grid, Button, Dropdown, Loader, Accordion} from 'semantic-ui-react'
 import style from './index.css'
 
 const Ptt = (props) => {    
         const { value, textOnly, options, postsList, loadingList, post, 
             loadingPost, textOnlyHandler, handleChange, getPost} = props
-        
+            console.log({post})
+
+        let Push
+        if(post && post.pushes) {
+            Push = post.pushes.map(push => (
+                <div>
+                    <span className={style.postContent__pushUser}>{push.userid}</span>
+                    <span className={style.postContent__pushContent}>{push.content}</span>                
+                </div>
+            ))
+        }
+
         return (
             <Grid columns='equal' style={{marginBottom: "0"}}>
                 <Grid.Row>
@@ -39,17 +50,14 @@ const Ptt = (props) => {
                                     </div>
                                 </div>
                             </Grid.Column>   
-
-                            <Grid.Column width={16}>                            
-                                <Button.Group style={{margin: "1rem"}}>
-                                    <Button positive={textOnly} onClick={() => textOnlyHandler(true)}>文</Button>
-                                    <Button.Or />
-                                    <Button positive={!textOnly} onClick={() => textOnlyHandler(false)}>圖</Button>
-                                </Button.Group>  
-                            </Grid.Column>  
                             
                             <Grid.Column computer={10} mobile={16}>
                                 <div className={style.postContentContainer}>
+                                    <Button.Group style={{margin: "1rem"}}>
+                                        <Button positive={textOnly} onClick={() => textOnlyHandler(true)}>文</Button>
+                                        <Button.Or />
+                                        <Button positive={!textOnly} onClick={() => textOnlyHandler(false)}>圖</Button>
+                                    </Button.Group>
                                     <div className={style.postContent}> 
                                         {
                                             loadingList ? null : 
@@ -58,7 +66,13 @@ const Ptt = (props) => {
                                                         <Loader active/>                                                        
                                                     </div>
                                                 ) : (
-                                                    <div className={style.postContent__content} dangerouslySetInnerHTML={textOnly ? {__html: post.content} : {__html: post.html}}></div>
+                                                    <div>
+                                                        <div className={style.postContent__content} 
+                                                            dangerouslySetInnerHTML={textOnly ? {__html: post.content} : {__html: post.html}}></div>
+                                                        <div className={style.postContent__pushes}>
+                                                            {Push}
+                                                        </div>
+                                                    </div> 
                                                 )
                                         }
                                     </div>

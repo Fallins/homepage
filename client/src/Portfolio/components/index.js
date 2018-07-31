@@ -33,7 +33,6 @@ class Portfolio extends Component {
     showContent = () => {
         const { value, textOnly, activeItem, menuItems } = this.state
         const { options, postsList, loadingList, post, loadingPost } = this.props
-
         const pttParams = {
             value, textOnly, options, postsList, loadingList, post, loadingPost, 
             textOnlyHandler: this.textOnlyHandler, handleChange: this.handleChange,
