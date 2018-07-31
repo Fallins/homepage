@@ -98,3 +98,8 @@
     background-color: rgba(256, 256, 256, .4);
 }
 
+
+
+.cryptoCoin__name {
+    margin-left: 0.75rem;
+}

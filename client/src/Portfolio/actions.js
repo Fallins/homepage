@@ -23,3 +23,11 @@ export const fetchPostDone = res => {
         data: res
     }
 }
+
+export const fetchCryptoCoin = (url) => ({type: types.FETCH_CRYPTOCOIN})
+export const fetchCryptoCoinDone = res => {
+    return {
+        type: types.FETCH_CRYPTOCOIN_DONE,
+        data: res
+    }
+}

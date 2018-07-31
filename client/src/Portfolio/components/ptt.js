@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Dropdown, Loader, Accordion} from 'semantic-ui-react'
+import { Grid, Button, Dropdown, Loader} from 'semantic-ui-react'
 import style from './index.css'
 
 const Ptt = (props) => {    
@@ -27,7 +27,8 @@ const Ptt = (props) => {
                             placeholder='Choose an option'
                             selection
                             value={value}
-                        />   
+                            search
+                        />                           
                     </Grid.Column>  
                 </Grid.Row>                   
                 {

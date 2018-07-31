@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 import { Container, Menu} from 'semantic-ui-react'
 import style from './index.css'
 import Ptt from './ptt'
+import Cct from './cct'
 
 class Portfolio extends Component {
     state = {
         options: [],
         value: "",
         textOnly: true ,
-        activeItem: 'PTT',
-        menuItems: ['PTT', 'TEST1', 'TEST2']
+        activeItem: 'CCT',
+        menuItems: ['PTT', 'CCT', 'TEST2']
     }
 
-    handleChange = (e, { value }) => {
+    handleChange = (e, { value, count = 100 }) => {    
+        if(!value) return
+
         const { getPostsList } = this.props
-        getPostsList(value)
+        getPostsList(value, count)
         this.setState({ value })
     }
 
@@ -31,7 +34,7 @@ class Portfolio extends Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     showContent = () => {
-        const { value, textOnly, activeItem, menuItems } = this.state
+        const { value, textOnly, activeItem } = this.state
         const { options, postsList, loadingList, post, loadingPost } = this.props
         const pttParams = {
             value, textOnly, options, postsList, loadingList, post, loadingPost, 
@@ -42,6 +45,8 @@ class Portfolio extends Component {
         switch(activeItem) {
             case 'PTT':
                 return <Ptt {...pttParams} />
+            case 'CCT':
+                return <Cct {...this.props}/>
             default: 
                 return <p>empty....</p>
         }
@@ -53,8 +58,7 @@ class Portfolio extends Component {
     }
 
     render() {   
-        const { value, textOnly, activeItem, menuItems } = this.state
-        const { options, postsList, loadingList, post, loadingPost } = this.props
+        const { activeItem, menuItems } = this.state
         
         return (
             <Container>

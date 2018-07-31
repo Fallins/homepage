@@ -1,0 +1,1 @@
+export const favorite = [ "Soft_Job", "Tech_Job", "Gossiping", "Stock", "CodeJob", "----------"]
