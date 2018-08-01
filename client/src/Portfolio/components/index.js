@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Container, Menu} from 'semantic-ui-react'
-import style from './index.css'
 import Ptt from './ptt'
 import Cct from './cct'
+import Frc from './frc'
 
 class Portfolio extends Component {
     state = {
         options: [],
         value: "",
         textOnly: true ,
-        activeItem: 'CCT',
-        menuItems: ['PTT', 'CCT', 'TEST2']
+        activeItem: 'PTT',
+        menuItems: ['PTT', 'CCT', 'FRC']
     }
 
-    handleChange = (e, { value, count = 100 }) => {    
+    handleChange = (e, { value, count = 200 }) => {    
         if(!value) return
 
         const { getPostsList } = this.props
@@ -47,6 +47,8 @@ class Portfolio extends Component {
                 return <Ptt {...pttParams} />
             case 'CCT':
                 return <Cct {...this.props}/>
+            case 'FRC':
+                return <Frc />
             default: 
                 return <p>empty....</p>
         }

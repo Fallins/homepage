@@ -35,11 +35,17 @@ class Cct extends Component {
 
                 <Table.Body>
                     {
-                        LoadingCryptoCoin ? <Loader active /> : 
+                        LoadingCryptoCoin ? (
+                                <Table.Row>
+                                    <Table.Cell>
+                                        <Loader active />
+                                    </Table.Cell>
+                                </Table.Row>
+                            ) : 
                             (
                                 cryptoCoin.map(cc => {
                                     return (
-                                        <Table.Row>
+                                        <Table.Row key={cc.name}>
                                             <Table.Cell>
                                                 <Icons name={cc.name} />
                                                 <span className={style.cryptoCoin__name}>{cc.name}</span>

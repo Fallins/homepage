@@ -19,7 +19,6 @@
     padding: 0 8px;
     cursor: pointer;
     color: #333;
-
     overflow : hidden;
     text-overflow : ellipsis;
     white-space : nowrap;
@@ -36,6 +35,10 @@
 
 .sideList__item.hasClicked {
     background-color: #000fff;
+}
+
+.sideList__itemTitle {
+    margin-left: 0.8rem;
 }
 
 .sideList__loader {
@@ -70,6 +73,13 @@
     margin: 0;
     padding: 15px;
     line-height: 1.5;
+}
+
+.postContent__header {
+    padding: 15px;
+    line-height: 1.5;
+    margin: 0;
+    display: flex;    
 }
 
 .postContent__pushes {

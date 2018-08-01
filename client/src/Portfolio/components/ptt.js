@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Dropdown, Loader} from 'semantic-ui-react'
+import { Grid, Button, Dropdown, Loader, Label} from 'semantic-ui-react'
 import style from './index.css'
 
 const Ptt = (props) => {    
@@ -33,14 +33,17 @@ const Ptt = (props) => {
                 </Grid.Row>                   
                 {
                     value ? (
-                        <Grid.Row>
-                            <Grid.Column computer={6} mobile={16}>
+                        <Grid.Row centered>
+                            <Grid.Column computer={6} mobile={15}>
                                 <div className={style.sideListContainer}>
                                     <div className={style.sideList}>                                            
                                         {
                                             !loadingList ? (
                                                 postsList.posts.map((item, idx) => (
-                                                    <div className={style.sideList__item} key={`${item.title}_${idx}`} onClick={() => getPost(item.href)}>{item.title}</div>
+                                                    <div className={style.sideList__item} key={`${item.title}_${idx}`} onClick={() => getPost(item.href)}>
+                                                        {item.date}
+                                                        <span className={style.sideList__itemTitle}>{item.title}</span>                                                     
+                                                    </div>
                                                 ))
                                             ) : (
                                                 <div className={style.sideList__loader}>
@@ -52,7 +55,7 @@ const Ptt = (props) => {
                                 </div>
                             </Grid.Column>   
                             
-                            <Grid.Column computer={10} mobile={16}>
+                            <Grid.Column computer={10} mobile={15}>
                                 <div className={style.postContentContainer}>
                                     <Button.Group style={{margin: "1rem"}}>
                                         <Button positive={textOnly} onClick={() => textOnlyHandler(true)}>文</Button>
@@ -68,11 +71,18 @@ const Ptt = (props) => {
                                                     </div>
                                                 ) : (
                                                     <div>
+                                                        {
+                                                            post.auther ? (
+                                                                <div className={style.postContent__header}>
+                                                                    <Label basic color="grey">{post.auther}</Label>
+                                                                    <Label basic color="grey">{post.time}</Label>
+                                                                </div>
+                                                            ) : null
+                                                        }
+                                                        
                                                         <div className={style.postContent__content} 
                                                             dangerouslySetInnerHTML={textOnly ? {__html: post.content} : {__html: post.html}}></div>
-                                                        <div className={style.postContent__pushes}>
-                                                            {Push}
-                                                        </div>
+                                                        <div className={style.postContent__pushes}>{Push}</div>
                                                     </div> 
                                                 )
                                         }

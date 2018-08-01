@@ -22,7 +22,7 @@ const genData = (fullData, cryptoCoin) => {
     // console.log({fullData})
     const data = []
     
-    cryptoCoin.map( c => {
+    cryptoCoin.forEach( c => {
       const d = fullData[c]
       data.push({
         name: c,
