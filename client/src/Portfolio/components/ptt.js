@@ -1,6 +1,8 @@
 import React from 'react'
-import { Grid, Button, Dropdown, Loader, Label} from 'semantic-ui-react'
+import { Grid, Button, Dropdown, Loader, Label, Icon} from 'semantic-ui-react'
 import style from './index.css'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+// import { copyToClipboard } from '../../utils/utils'
 
 const Ptt = (props) => {    
         const { value, textOnly, options, postsList, loadingList, post, 
@@ -62,6 +64,12 @@ const Ptt = (props) => {
                                         <Button.Or />
                                         <Button positive={!textOnly} onClick={() => textOnlyHandler(false)}>圖</Button>
                                     </Button.Group>
+
+                                    <CopyToClipboard text={post.share}
+                                        onCopy={() => console.log("Copy Success")}>
+                                        <Button icon='share alternate'/>
+                                    </CopyToClipboard>
+                                    
                                     <div className={style.postContent}> 
                                         {
                                             loadingList ? null : 
