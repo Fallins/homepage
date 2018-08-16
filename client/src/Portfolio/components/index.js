@@ -13,7 +13,7 @@ class Portfolio extends Component {
         menuItems: ['PTT', 'CCT', 'FRC']
     }
 
-    handleChange = (e, { value, count = 200 }) => {    
+    handleChange = (e, { value, count = 400 }) => {    
         if(!value) return
 
         const { getPostsList } = this.props

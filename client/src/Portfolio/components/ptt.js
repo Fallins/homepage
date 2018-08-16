@@ -1,8 +1,7 @@
 import React from 'react'
-import { Grid, Button, Dropdown, Loader, Label, Icon} from 'semantic-ui-react'
+import { Grid, Button, Dropdown, Loader, Label} from 'semantic-ui-react'
 import style from './index.css'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-// import { copyToClipboard } from '../../utils/utils'
 
 const Ptt = (props) => {    
         const { value, textOnly, options, postsList, loadingList, post, 
@@ -40,7 +39,7 @@ const Ptt = (props) => {
                                 <div className={style.sideListContainer}>
                                     <div className={style.sideList}>                                            
                                         {
-                                            !loadingList ? (
+                                            !loadingList? (
                                                 postsList.posts.map((item, idx) => (
                                                     <div className={style.sideList__item} key={`${item.title}_${idx}`} onClick={() => getPost(item.href)}>
                                                         {item.date}

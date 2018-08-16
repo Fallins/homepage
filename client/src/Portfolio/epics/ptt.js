@@ -1,4 +1,5 @@
-import { map, mergeMap } from 'rxjs/operators'
+import { map, mergeMap, catchError } from 'rxjs/operators'
+import { of } from 'rxjs'
 import { ajax } from 'rxjs/ajax';
 import { ofType } from 'redux-observable'
 import * as types from '../../actions/actionTypes'
@@ -22,7 +23,11 @@ export const getPostsListEpic = action$ => action$.pipe(
         // console.log("======================")
         return ajax.get(`/api/posts/${data.count}?url=${data.url}`).pipe(
             map(res => fetchPostsListDone(res.response)),
-            
+            catchError(error => of({
+                type: types.FETCH_POSTSLIST_ERROR,
+                data: "",
+                error: true
+            }))
         )
     })
 )
@@ -35,7 +40,11 @@ export const getPostEpic = action$ => action$.pipe(
         // console.log("======================")
         return ajax.get(`/api/post?url=${data.url}`).pipe(
             map(res => fetchPostDone(res.response)),
-            
+            catchError(error => of({
+                type: types.FETCH_POST_ERROR,
+                data: "",
+                error: true
+            }))
         )
     })
 )
