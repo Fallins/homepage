@@ -21,14 +21,12 @@
   },
   "homepage": "https://github.com/Fallins/homepage#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "helmet": "^3.13.0",
     "morgan": "^1.9.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0"
   }
 }
